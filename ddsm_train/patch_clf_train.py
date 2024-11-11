@@ -176,8 +176,7 @@ def run(train_dir, val_dir, test_dir,
         classes=class_list, class_mode='categorical', batch_size=batch_size, 
         preprocess=preprocess_input, shuffle=False)
     print ("Test samples =", test_generator.nb_sample)
-    print ("Load saved best model:", best_model + '.',
-    sys.stdout.flush())
+    print ("Load saved best model:", best_model + '.', sys.stdout.flush())
     org_model.load_weights(best_model)
     print ("Done.")
     test_steps = int(test_generator.nb_sample/batch_size)

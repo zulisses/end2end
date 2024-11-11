@@ -1,0 +1,693 @@
+
+train_dir=/home/ulisses/DDSM-all/patchesbkg/train_out
+val_dir=/home/ulisses/DDSM-all/patchesbkg/val_out_under
+test_dir=/home/ulisses/DDSM-all/patchesbkg/test_out_under
+
+>>> Model training options: <<<
+ {'img_size': [224, 224], 'img_scale': 224.0, 'rescale_factor': None, 'featurewise_center': True, 'featurewise_mean': 59.6, 'equalize_hist': True, 'batch_size': 32, 'train_bs_multiplier': 1.0, 'augmentation': True, 'class_list': ['background', 'malignant', 'benign'], 'nb_epoch': 3, 'top_layer_epochs': 13, 'all_layer_epochs': 50, 'load_val_ram': False, 'load_train_ram': False, 'net': 'vgg16', 'nb_init_filter': 64, 'init_filter_size': 7, 'init_conv_stride': 2, 'pool_size': 3, 'pool_stride': 2, 'weight_decay': 0.01, 'weight_decay2': 0.0001, 'alpha': 0.0001, 'l1_ratio': 0.5, 'inp_dropout': 0.5, 'hidden_dropout': 0.8, 'hidden_dropout2': 0.8, 'optim': 'adam', 'init_lr': 0.001, 'lr_patience': 2, 'es_patience': 18, 'resume_from': None, 'auto_batch_balance': True, 'pos_cls_weight': 1.0, 'neg_cls_weight': 1.0, 'use_pretrained': True, 'top_layer_nb': 15, 'top_layer_multiplier': 0.1, 'all_layer_multiplier': 0.01, 'best_model': '/home/ulisses/DDSM-all/best_model.h5', 'final_model': '/home/ulisses/DDSM-all/finalmodel.h5'} 
+
+12
+1
+Loading vgg16,
+Using TensorFlow backend.
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:523: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:524: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:526: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:527: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:532: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/dicom/__init__.py:53: UserWarning: 
+This code is using an older version of pydicom, which is no longer 
+maintained as of Jan 2017.  You can access the new pydicom features and API 
+by installing `pydicom` from PyPI.
+See 'Transitioning to pydicom 1.x' section at pydicom.readthedocs.org 
+for more information.
+
+  warnings.warn(msg)
+WARNING:tensorflow:From /home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:1290: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2024-09-28 17:39:28.271223: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2024-09-28 17:39:28.272038: I tensorflow/core/common_runtime/process_util.cc:69] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
+WARNING:tensorflow:From /home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:1188: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+Done.
+Create generator for train set
+Found 4680 images belonging to 3 classes.
+Create generator for val set
+Found 414 images belonging to 3 classes.
+Start model training
+on the last dense layer only
+Epoch 1/3
+Epoch 00000: val_acc improved from -inf to 0.48958, saving model to /home/ulisses/DDSM-all/best_model.h5
+1467s - loss: 13.2582 - acc: 0.3474 - val_loss: 1.2748 - val_acc: 0.4896
+Epoch 2/3
+Epoch 00001: val_acc did not improve
+1432s - loss: 7.8475 - acc: 0.3797 - val_loss: 1.0783 - val_acc: 0.4583
+Epoch 3/3
+Epoch 00002: val_acc did not improve
+1433s - loss: 4.7386 - acc: 0.4209 - val_loss: 1.3448 - val_acc: 0.2396
+Done.
+top layer nb = 15
+Start training on the top layers only
+Epoch 4/13
+Epoch 00003: val_acc improved from 0.48958 to 0.91406, saving model to /home/ulisses/DDSM-all/best_model.h5
+1655s - loss: 2.9661 - acc: 0.5100 - val_loss: 0.8013 - val_acc: 0.9141
+Epoch 5/13
+Epoch 00004: val_acc did not improve
+1659s - loss: 3.0353 - acc: 0.4381 - val_loss: 0.9547 - val_acc: 0.5000
+Epoch 6/13
+Epoch 00005: val_acc did not improve
+1646s - loss: 2.8907 - acc: 0.4862 - val_loss: 0.7676 - val_acc: 0.6562
+Epoch 7/13
+Epoch 00006: val_acc did not improve
+1648s - loss: 3.3206 - acc: 0.3869 - val_loss: 1.1652 - val_acc: 0.1276
+Epoch 8/13
+Epoch 00007: val_acc did not improve
+1644s - loss: 3.0963 - acc: 0.3941 - val_loss: 1.0166 - val_acc: 0.5417
+Epoch 9/13
+Epoch 00008: val_acc did not improve
+1640s - loss: 3.2206 - acc: 0.3867 - val_loss: 0.9771 - val_acc: 0.3828
+Epoch 10/13
+Epoch 00009: val_acc did not improve
+1632s - loss: 2.9263 - acc: 0.4235 - val_loss: 0.9117 - val_acc: 0.7500
+Epoch 11/13
+Epoch 00010: val_acc did not improve
+1634s - loss: 3.1689 - acc: 0.4103 - val_loss: 0.8793 - val_acc: 0.4010
+Epoch 12/13
+Epoch 00011: val_acc did not improve
+1634s - loss: 3.0909 - acc: 0.4152 - val_loss: 0.7456 - val_acc: 0.5417
+Epoch 13/13
+Epoch 00012: val_acc did not improve
+1639s - loss: 2.9385 - acc: 0.4649 - val_loss: 1.0039 - val_acc: 0.1667
+Done.
+Start training on all layers
+Epoch 14/50
+Epoch 00013: val_acc did not improve
+4285s - loss: 3.3340 - acc: 0.3697 - val_loss: 1.0078 - val_acc: 0.1042
+Epoch 15/50
+Epoch 00014: val_acc did not improve
+4267s - loss: 3.1636 - acc: 0.4075 - val_loss: 0.9936 - val_acc: 0.1562
+Epoch 16/50
+Epoch 00015: val_acc did not improve
+4266s - loss: 3.1376 - acc: 0.4273 - val_loss: 0.9703 - val_acc: 0.2865
+Epoch 17/50
+Epoch 00016: val_acc did not improve
+4282s - loss: 3.4306 - acc: 0.3499 - val_loss: 0.9956 - val_acc: 0.2708
+Epoch 18/50
+Epoch 00017: val_acc did not improve
+4281s - loss: 3.3127 - acc: 0.3805 - val_loss: 1.1436 - val_acc: 0.0000e+00
+Epoch 19/50
+Epoch 00018: val_acc did not improve
+4268s - loss: 3.3150 - acc: 0.3195 - val_loss: 1.1234 - val_acc: 0.0000e+00
+Epoch 20/50
+Epoch 00019: val_acc did not improve
+4239s - loss: 3.2793 - acc: 0.3372 - val_loss: 1.0451 - val_acc: 0.0833
+Epoch 21/50
+Epoch 00020: val_acc did not improve
+4252s - loss: 3.2124 - acc: 0.3837 - val_loss: 1.0163 - val_acc: 0.2448
+Epoch 22/50
+Epoch 00021: val_acc did not improve
+4248s - loss: 3.3627 - acc: 0.4075 - val_loss: 1.1225 - val_acc: 0.0000e+00
+Epoch 23/50
+Epoch 00022: val_acc did not improve
+4255s - loss: 3.3122 - acc: 0.3204 - val_loss: 1.1189 - val_acc: 0.0000e+00
+Epoch 24/50
+Epoch 00023: val_acc did not improve
+4247s - loss: 3.3111 - acc: 0.2825 - val_loss: 1.1222 - val_acc: 0.0000e+00
+Epoch 25/50
+Process Process-334:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-191:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-335:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-333:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-329:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-192:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-336:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-181:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-188:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-186:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-187:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-326:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-331:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-325:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-332:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-327:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-189:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-190:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-182:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-183:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-185:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-328:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-184:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt
+Process Process-330:
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 258, in _bootstrap
+    self.run()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 93, in run
+    self._target(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/utils/data_utils.py", line 569, in data_generator_task
+    self.queue.put(generator_output)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 82, in put
+    if not self._sem.acquire(block, timeout):
+KeyboardInterrupt
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/process.py", line 261, in _bootstrap
+    util._exit_function()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 322, in _exit_function
+    _run_finalizers()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 262, in _run_finalizers
+    finalizer()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/util.py", line 186, in __call__
+    res = self._callback(*self._args, **self._kwargs)
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/multiprocessing/queues.py", line 191, in _finalize_join
+    thread.join()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1056, in join
+    self._wait_for_tstate_lock()
+  File "/home/ulisses/miniconda3/envs/amb1/lib/python3.6/threading.py", line 1072, in _wait_for_tstate_lock
+    elif lock.acquire(block, timeout):
+KeyboardInterrupt

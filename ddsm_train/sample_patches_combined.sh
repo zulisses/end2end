@@ -3,8 +3,8 @@ ROI_MASK_PATH_FILE="/home/ulisses/DDSM-all/roi_mask_path.csv"
 PAT_TRAIN_LIST_FILE="/home/ulisses/DDSM-all/pat_train_list.csv"
 ROI_MASK_DIR="/home/ulisses/DDSM-all/CBIS-DDSM-png/roi_mask_dir"
 FULL_IMG_DIR="/home/ulisses/DDSM-all/CBIS-DDSM-png/full_img_dir"
-TRAIN_OUT_DIR="/home/ulisses/DDSM-all/patchesbkg/test_out"
-VAL_OUT_DIR="/home/ulisses/DDSM-all/patchesbkg/val_out"
+TRAIN_OUT_DIR="/home/ulisses/DDSM-all/patchesS5Nhs/test"
+VAL_OUT_DIR="/home/ulisses/DDSM-all/patchesS5Nhs/val"
 
 python sample_patches_combined.py \
     --target-height 1152 \
@@ -12,16 +12,16 @@ python sample_patches_combined.py \
     --patch-size 224 \
     --segment-breast \
     --nb-bkg 0 \
-    --nb-abn 1 \
-    --nb-hns 1 \
-    --pos-cutoff 0.75 \
-    --neg-cutoff 0.35 \
+    --nb-abn 5 \
+    --nb-hns 5 \
+    --pos-cutoff 0.9 \
+    --neg-cutoff 0.1 \
     --val-size 0 \
     --bkg-dir background \
-    --calc-pos-dir calc_mal \
-    --calc-neg-dir calc_ben \
-    --mass-pos-dir mass_mal \
-    --mass-neg-dir mass_ben \
+    --calc-pos-dir malignant \
+    --calc-neg-dir benign \
+    --mass-pos-dir malignant \
+    --mass-neg-dir benign \
     --verbose \
     $ROI_MASK_PATH_FILE $ROI_MASK_DIR $PAT_TRAIN_LIST_FILE $FULL_IMG_DIR $TRAIN_OUT_DIR $VAL_OUT_DIR
 

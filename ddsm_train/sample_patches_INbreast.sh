@@ -11,12 +11,12 @@ python sample_patches_INbreast.py \
     --target-width 3328 \
     --patch-size 224 \
     --segment-breast \
-    --nb-bkg 7 \
+    --nb-bkg 0 \
     --nb-abn 0 \
-    --nb-hns 0 \
-    --pos-cutoff 0.75 \
-    --neg-cutoff 0.35 \
-    --val-size 0.3 \
+    --nb-hns 1 \
+    --pos-cutoff 0.9 \
+    --neg-cutoff 0.1 \
+    --val-size 0.25 \
     --bkg-dir background \
     --pos-dir mal \
     --neg-dir ben \

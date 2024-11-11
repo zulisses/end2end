@@ -1,0 +1,215 @@
+
+train_dir=/home/ulisses/DDSM-all/patchesbkg/train_out
+val_dir=/home/ulisses/DDSM-all/patchesbkg/val_out_under
+test_dir=/home/ulisses/DDSM-all/patchesbkg/test_out_under
+
+>>> Model training options: <<<
+ {'img_size': [224, 224], 'img_scale': 224.0, 'rescale_factor': None, 'featurewise_center': True, 'featurewise_mean': 59.6, 'equalize_hist': True, 'batch_size': 32, 'train_bs_multiplier': 1.0, 'augmentation': True, 'class_list': ['background', 'malignant', 'benign'], 'nb_epoch': 3, 'top_layer_epochs': 13, 'all_layer_epochs': 50, 'load_val_ram': False, 'load_train_ram': False, 'net': 'vgg16', 'nb_init_filter': 64, 'init_filter_size': 7, 'init_conv_stride': 2, 'pool_size': 3, 'pool_stride': 2, 'weight_decay': 0.01, 'weight_decay2': 0.0001, 'alpha': 0.0001, 'l1_ratio': 0.5, 'inp_dropout': 0.5, 'hidden_dropout': 0.0, 'hidden_dropout2': 0.0, 'optim': 'adam', 'init_lr': 0.001, 'lr_patience': 2, 'es_patience': 18, 'resume_from': None, 'auto_batch_balance': True, 'pos_cls_weight': 1.0, 'neg_cls_weight': 1.0, 'use_pretrained': True, 'top_layer_nb': 15, 'top_layer_multiplier': 0.1, 'all_layer_multiplier': 0.01, 'best_model': '/home/ulisses/DDSM-all/best_model.h5', 'final_model': '/home/ulisses/DDSM-all/finalmodel.h5'} 
+
+12
+1
+Loading vgg16,
+Using TensorFlow backend.
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:523: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:524: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:526: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:527: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:532: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+/home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/dicom/__init__.py:53: UserWarning: 
+This code is using an older version of pydicom, which is no longer 
+maintained as of Jan 2017.  You can access the new pydicom features and API 
+by installing `pydicom` from PyPI.
+See 'Transitioning to pydicom 1.x' section at pydicom.readthedocs.org 
+for more information.
+
+  warnings.warn(msg)
+WARNING:tensorflow:From /home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:1290: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2024-09-24 22:47:04.889265: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 FMA
+2024-09-24 22:47:04.889393: I tensorflow/core/common_runtime/process_util.cc:69] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
+WARNING:tensorflow:From /home/ulisses/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:1188: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+Done.
+Create generator for train set
+Found 4680 images belonging to 3 classes.
+Create generator for val set
+Found 414 images belonging to 3 classes.
+Start model training
+on the last dense layer only
+Epoch 1/3
+Epoch 00000: val_acc improved from -inf to 0.46875, saving model to /home/ulisses/DDSM-all/best_model.h5
+1399s - loss: 4.6203 - acc: 0.4369 - val_loss: 1.0538 - val_acc: 0.4688
+Epoch 2/3
+Epoch 00001: val_acc did not improve
+1388s - loss: 3.7224 - acc: 0.5204 - val_loss: 2.2023 - val_acc: 0.1146
+Epoch 3/3
+Epoch 00002: val_acc did not improve
+1387s - loss: 3.7621 - acc: 0.4945 - val_loss: 1.6059 - val_acc: 0.2083
+Done.
+top layer nb = 15
+Start training on the top layers only
+Epoch 4/13
+Epoch 00003: val_acc improved from 0.46875 to 0.61719, saving model to /home/ulisses/DDSM-all/best_model.h5
+1604s - loss: 1.8333 - acc: 0.8151 - val_loss: 0.7589 - val_acc: 0.6172
+Epoch 5/13
+Epoch 00004: val_acc improved from 0.61719 to 0.69010, saving model to /home/ulisses/DDSM-all/best_model.h5
+1604s - loss: 1.6697 - acc: 0.8229 - val_loss: 0.9596 - val_a3cc: 0.6901
+Epoch 6/13
+Epoch 00005: val_acc did not improve
+1599s - loss: 1.7432 - acc: 0.8021 - val_loss: 1.1679 - val_acc: 0.4453
+Epoch 7/13
+Epoch 00006: val_acc improved from 0.69010 to 0.79688, saving model to /home/ulisses/DDSM-all/best_model.h5
+1599s - loss: 1.9321 - acc: 0.7759 - val_loss: 0.6493 - val_acc: 0.7969
+Epoch 8/13
+Epoch 00007: val_acc did not improve
+1594s - loss: 2.0421 - acc: 0.7944 - val_loss: 0.8635 - val_acc: 0.7760
+Epoch 9/13
+Epoch 00008: val_acc did not improve
+1598s - loss: 2.0734 - acc: 0.7583 - val_loss: 2.1595 - val_acc: 0.4375
+Epoch 10/13
+Epoch 00009: val_acc improved from 0.79688 to 0.84635, saving model to /home/ulisses/DDSM-all/best_model.h5
+1596s - loss: 2.0051 - acc: 0.7706 - val_loss: 0.5537 - val_acc: 0.8464
+Epoch 11/13
+Epoch 00010: val_acc did not improve
+1592s - loss: 2.0303 - acc: 0.7519 - val_loss: 0.9731 - val_acc: 0.5573
+Epoch 12/13
+Epoch 00011: val_acc did not improve
+1592s - loss: 2.0241 - acc: 0.7366 - val_loss: 1.0110 - val_acc: 0.7370
+Epoch 13/13
+Epoch 00012: val_acc did not improve
+1590s - loss: 2.2768 - acc: 0.7302 - val_loss: 0.7132 - val_acc: 0.7318
+Done.
+Start training on all layers
+Epoch 14/50
+Epoch 00013: val_acc did not improve
+4228s - loss: 2.1859 - acc: 0.7149 - val_loss: 0.7985 - val_acc: 0.8281
+Epoch 15/50
+Epoch 00014: val_acc did not improve
+4217s - loss: 2.1731 - acc: 0.7034 - val_loss: 0.9589 - val_acc: 0.4323
+Epoch 16/50
+Epoch 00015: val_acc did not improve
+4192s - loss: 2.0342 - acc: 0.7275 - val_loss: 1.1432 - val_acc: 0.5833
+Epoch 17/50
+Epoch 00016: val_acc did not improve
+4193s - loss: 2.3675 - acc: 0.6405 - val_loss: 0.8359 - val_acc: 0.6667
+Epoch 18/50
+Epoch 00017: val_acc did not improve
+4239s - loss: 1.8586 - acc: 0.7617 - val_loss: 0.8747 - val_acc: 0.7031
+Epoch 19/50
+Epoch 00018: val_acc did not improve
+4258s - loss: 2.5445 - acc: 0.6284 - val_loss: 1.0958 - val_acc: 0.4583
+Epoch 20/50
+Epoch 00019: val_acc did not improve
+4280s - loss: 2.0378 - acc: 0.7090 - val_loss: 1.2791 - val_acc: 0.6927
+Epoch 21/50
+Epoch 00020: val_acc did not improve
+4300s - loss: 2.2635 - acc: 0.6913 - val_loss: 1.5186 - val_acc: 0.5521
+Epoch 22/50
+Epoch 00021: val_acc did not improve
+4321s - loss: 1.8585 - acc: 0.7402 - val_loss: 0.8602 - val_acc: 0.6875
+Epoch 23/50
+Epoch 00022: val_acc did not improve
+4330s - loss: 1.7446 - acc: 0.7674 - val_loss: 0.9512 - val_acc: 0.7031
+Epoch 24/50
+Epoch 00023: val_acc did not improve
+4322s - loss: 2.3084 - acc: 0.6835 - val_loss: 1.4070 - val_acc: 0.4844
+Epoch 25/50
+Epoch 00024: val_acc did not improve
+4076s - loss: 1.9804 - acc: 0.7483 - val_loss: 2.9092 - val_acc: 0.2969
+Epoch 26/50
+Epoch 00025: val_acc did not improve
+4264s - loss: 2.0611 - acc: 0.7028 - val_loss: 1.1709 - val_acc: 0.5990
+Epoch 27/50
+Epoch 00026: val_acc did not improve
+4266s - loss: 2.0541 - acc: 0.7290 - val_loss: 1.5335 - val_acc: 0.6094
+Epoch 28/50
+Epoch 00027: val_acc did not improve
+4270s - loss: 2.1856 - acc: 0.6930 - val_loss: 1.3650 - val_acc: 0.5521
+Epoch 29/50
+Epoch 00028: val_acc did not improve
+4274s - loss: 1.7338 - acc: 0.7891 - val_loss: 0.4332 - val_acc: 0.8333
+Epoch 30/50
+Epoch 00029: val_acc did not improve
+4273s - loss: 2.0893 - acc: 0.7219 - val_loss: 1.6353 - val_acc: 0.5260
+Epoch 31/50
+Epoch 00030: val_acc improved from 0.84635 to 0.94271, saving model to /home/ulisses/DDSM-all/best_model.h5
+4272s - loss: 1.9971 - acc: 0.7519 - val_loss: 0.3128 - val_acc: 0.9427
+Epoch 32/50
+Epoch 00031: val_acc did not improve
+4262s - loss: 1.8027 - acc: 0.7723 - val_loss: 0.4694 - val_acc: 0.9115
+Epoch 33/50
+Epoch 00032: val_acc did not improve
+4249s - loss: 2.0055 - acc: 0.7645 - val_loss: 0.6947 - val_acc: 0.8646
+Epoch 34/50
+Epoch 00033: val_acc did not improve
+4245s - loss: 1.9127 - acc: 0.7526 - val_loss: 1.0149 - val_acc: 0.6979
+Epoch 35/50
+Epoch 00034: val_acc did not improve
+4235s - loss: 2.0278 - acc: 0.7430 - val_loss: 0.6242 - val_acc: 0.8177
+Epoch 36/50
+Epoch 00035: val_acc did not improve
+4213s - loss: 1.9011 - acc: 0.7402 - val_loss: 1.7723 - val_acc: 0.4427
+Epoch 37/50
+Epoch 00036: val_acc improved from 0.94271 to 0.96354, saving model to /home/ulisses/DDSM-all/best_model.h5
+3951s - loss: 1.8579 - acc: 0.7714 - val_loss: 0.2604 - val_acc: 0.9635
+Epoch 38/50
+Epoch 00037: val_acc did not improve
+4196s - loss: 2.2027 - acc: 0.7026 - val_loss: 0.8344 - val_acc: 0.7708
+Epoch 39/50
+Epoch 00038: val_acc did not improve
+4255s - loss: 1.9730 - acc: 0.7474 - val_loss: 1.0636 - val_acc: 0.7344
+Epoch 40/50
+Epoch 00039: val_acc did not improve
+4271s - loss: 1.8415 - acc: 0.7734 - val_loss: 0.7860 - val_acc: 0.8229
+Epoch 41/50
+Epoch 00040: val_acc did not improve
+4287s - loss: 2.0194 - acc: 0.7481 - val_loss: 0.7658 - val_acc: 0.7188
+Epoch 42/50
+Epoch 00041: val_acc did not improve
+4299s - loss: 2.2562 - acc: 0.6828 - val_loss: 0.8470 - val_acc: 0.6719
+Epoch 43/50
+Epoch 00042: val_acc did not improve
+4317s - loss: 1.7863 - acc: 0.7683 - val_loss: 0.7428 - val_acc: 0.7604
+Epoch 44/50
+Epoch 00043: val_acc did not improve
+4317s - loss: 1.8847 - acc: 0.7543 - val_loss: 0.8882 - val_acc: 0.6979
+Epoch 45/50
+Epoch 00044: val_acc did not improve
+4296s - loss: 1.8648 - acc: 0.7619 - val_loss: 0.6959 - val_acc: 0.7656
+Epoch 46/50
+Epoch 00045: val_acc did not improve
+4270s - loss: 1.8735 - acc: 0.7640 - val_loss: 0.6070 - val_acc: 0.9167
+Epoch 47/50
+Epoch 00046: val_acc did not improve
+4258s - loss: 1.8295 - acc: 0.7613 - val_loss: 0.8852 - val_acc: 0.7656
+Epoch 48/50
+Epoch 00047: val_acc did not improve
+4257s - loss: 1.7500 - acc: 0.7991 - val_loss: 0.7558 - val_acc: 0.7865
+Epoch 49/50
+Epoch 00048: val_acc did not improve
+4023s - loss: 1.6832 - acc: 0.8001 - val_loss: 0.4763 - val_acc: 0.9219
+Epoch 50/50
+Epoch 00049: val_acc did not improve
+4256s - loss: 2.0799 - acc: 0.7198 - val_loss: 0.4681 - val_acc: 0.8750
+Done.
+
+==== Training summary ====
+Minimum val loss achieved at epoch: 37
+Best val loss: 0.26040661831696826
+Best val accuracy: 0.9635416666666666
+
+==== Predicting on test set ====
+Found 801 images belonging to 3 classes.
+Test samples = 801
+Load saved best model: /home/ulisses/DDSM-all/best_model.h5. None
+Done.
+Evaluation result on test set: [0.23534682214260103, 0.965]
