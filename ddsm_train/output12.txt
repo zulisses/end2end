@@ -1,0 +1,48 @@
+nohup: ignorando entrada
+
+train_dir=/home/ucarvalho/DDSM-all/patchesS5Nhs/train
+val_dir=/home/ucarvalho/DDSM-all/patchesS5Nhs/val
+test_dir=/home/ucarvalho/DDSM-all/patchesS5Nhs/test
+
+>>> Model training options: <<<
+ {'img_size': [224, 224], 'img_scale': 224.0, 'rescale_factor': None, 'featurewise_center': True, 'featurewise_mean': 59.6, 'equalize_hist': True, 'batch_size': 32, 'train_bs_multiplier': 1.0, 'augmentation': True, 'class_list': ['background', 'malignant', 'benign'], 'nb_epoch': 3, 'top_layer_epochs': 13, 'all_layer_epochs': 50, 'load_val_ram': False, 'load_train_ram': False, 'net': 'vgg16', 'nb_init_filter': 64, 'init_filter_size': 7, 'init_conv_stride': 2, 'pool_size': 3, 'pool_stride': 2, 'weight_decay': 0.01, 'weight_decay2': 0.0001, 'alpha': 0.0001, 'l1_ratio': 0.5, 'inp_dropout': 0.5, 'hidden_dropout': 0.3, 'hidden_dropout2': 0.3, 'optim': 'adam', 'init_lr': 0.001, 'lr_patience': 2, 'es_patience': 18, 'resume_from': None, 'auto_batch_balance': True, 'pos_cls_weight': 1.0, 'neg_cls_weight': 1.0, 'use_pretrained': True, 'top_layer_nb': 15, 'top_layer_multiplier': 0.1, 'all_layer_multiplier': 0.01, 'best_model': '/home/ucarvalho/DDSM-all/best_model.h5', 'final_model': '/home/ucarvalho/DDSM-all/finalmodel.h5'} 
+
+12
+1
+Loading vgg16,
+Using TensorFlow backend.
+/home/ucarvalho/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:523: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint8 = np.dtype([("qint8", np.int8, 1)])
+/home/ucarvalho/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:524: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint8 = np.dtype([("quint8", np.uint8, 1)])
+/home/ucarvalho/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:525: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint16 = np.dtype([("qint16", np.int16, 1)])
+/home/ucarvalho/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:526: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_quint16 = np.dtype([("quint16", np.uint16, 1)])
+/home/ucarvalho/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:527: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  _np_qint32 = np.dtype([("qint32", np.int32, 1)])
+/home/ucarvalho/miniconda3/envs/amb1/lib/python3.6/site-packages/tensorflow/python/framework/dtypes.py:532: FutureWarning: Passing (type, 1) or '1type' as a synonym of type is deprecated; in a future version of numpy, it will be understood as (type, (1,)) / '(1,)type'.
+  np_resource = np.dtype([("resource", np.ubyte, 1)])
+/home/ucarvalho/miniconda3/envs/amb1/lib/python3.6/site-packages/dicom/__init__.py:53: UserWarning: 
+This code is using an older version of pydicom, which is no longer 
+maintained as of Jan 2017.  You can access the new pydicom features and API 
+by installing `pydicom` from PyPI.
+See 'Transitioning to pydicom 1.x' section at pydicom.readthedocs.org 
+for more information.
+
+  warnings.warn(msg)
+WARNING:tensorflow:From /home/ucarvalho/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:1290: calling reduce_mean (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+2024-11-29 12:12:15.653723: I tensorflow/core/platform/cpu_feature_guard.cc:141] Your CPU supports instructions that this TensorFlow binary was not compiled to use: SSE4.1 SSE4.2 AVX AVX2 AVX512F FMA
+2024-11-29 12:12:15.653919: I tensorflow/core/common_runtime/process_util.cc:69] Creating new thread pool with default inter op setting: 2. Tune using inter_op_parallelism_threads for best performance.
+WARNING:tensorflow:From /home/ucarvalho/miniconda3/envs/amb1/lib/python3.6/site-packages/keras/backend/tensorflow_backend.py:1188: calling reduce_sum (from tensorflow.python.ops.math_ops) with keep_dims is deprecated and will be removed in a future version.
+Instructions for updating:
+keep_dims is deprecated, use keepdims instead
+Done.
+Create generator for train set
+Found 19317 images belonging to 3 classes.
+Create generator for val set
+Found 6822 images belonging to 3 classes.
+Start model training
+on the last dense layer only

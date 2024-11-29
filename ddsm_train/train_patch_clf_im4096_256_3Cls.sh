@@ -23,8 +23,8 @@ python patch_clf_train.py \
     --top-layer-nb 15 \
     --weight-decay 0.01 \
     --weight-decay2 0.0001 \
-    --hidden-dropout 0 \
-    --hidden-dropout2 0 \
+    --hidden-dropout 0.3 \
+    --hidden-dropout2 0.3 \
     --init-learningrate 0.001 \
     --top-layer-multiplier 0.1 \
     --all-layer-multiplier 0.01 \
